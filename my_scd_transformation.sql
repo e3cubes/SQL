@@ -5,7 +5,7 @@ WITH newvalue AS (
     ,createddate AS startdate
     ,RANK() OVER(PARTITION BY opportunityid,field ORDER BY createddate) AS rank
 
-    FROM prod_galaxi_pii_cipdw_sfdc_ods.opportunityfieldhistory
+    FROM opportunityfieldhistory
 
     WHERE field='CloseDate'
     AND dw_delete_flag='N'
@@ -20,7 +20,7 @@ WITH newvalue AS (
     ,createddate AS enddate
     ,(RANK() OVER(PARTITION BY opportunityid,field ORDER BY createddate)-1) AS rank
 
-    FROM prod_galaxi_pii_cipdw_sfdc_ods.opportunityfieldhistory
+    FROM opportunityfieldhistory
 
     WHERE field='CloseDate'
     AND dw_delete_flag='N'
